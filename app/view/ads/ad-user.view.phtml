@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <?php require_once VIEW.'shared/meta.shared.phtml'?>
+    <link rel="stylesheet" href="../../../public/css/style.css">
+    <script defer src="../../../../public/js/active-route.js"></script>
+
+    <title> Vaje 2 SP</title>
+</head>
+<body>
+<?php require_once VIEW.'shared/header.shared.phtml'?>
+<?php foreach ($this->ads as $ad) : ?>
+    <div class="card shadow-sm m-2 ad_card"  >
+        <div class="card-header">
+            <h4 class="card-title"><b> <?= $ad->getTitle() ?> </b></h4>
+        </div>
+        <div class="card-body">
+            <p><?= $ad->getDescription() ?></p>
+            <img class="displayImage" src="data:image;base64,<?= base64_encode($ad->getImages()[0]->getBytes()) ?>" />
+            <?php foreach ($ad->getCategories() as $category) : ?>
+                <p><?= $category->getCategory() ?></p>
+            <?php endforeach; ?>
+        </div>
+        <div class="card-footer">
+            <a class="btn read-more-btn p-1 mb-10 rounded mx-auto" href="/ads/detail/<?= $ad->getId() ?>">Read more</a>
+            <a class="btn btn-primary " href="/ads/edit/<?= $ad->getId() ?>">Edit</a>
+            <a class="btn btn-danger" href="/ads/soft-del/<?= $ad->getId() ?>">Remove</a>
+        </div>
+    </div>
+<?php endforeach;?>
+<?php require_once VIEW.'shared/footer.shared.phtml'?>
+</body>
+</html>

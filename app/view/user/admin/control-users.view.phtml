@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <?php require_once VIEW.'shared/meta.shared.phtml'?>
+    <link rel="stylesheet" href="../../../../public/css/style.css">
+    <script defer src="../../../../public/js/category-select.js"></script>
+    <script defer src="../../../../../public/js/active-route.js"></script>
+    <script defer src="../../../../public/js/confirm-delete.js"></script>
+    <title> Vaje 2 SP</title>
+</head>
+<body>
+<?php require_once VIEW.'shared/header.shared.phtml'?>
+    <a class= "btn p-2 mr-1 rounded nav-btn-add-user" href="/user/admin/create-users" >Add user</a> <!--Zavrsi-->
+<?php foreach ($this->users as $user) : ?>
+        <div class="card shadow-sm m-2 ad_card"  >
+            <div class="card-header">
+                <label for="username"><b>Username: </b></label>
+                <h4 class="card-title"><b> <?= $user->getUsername() ?> </b></h4>
+            </div>
+            <div class="card-header">
+                <label for="firstname"><b>First Name: </b></label>
+                <p class="card-title"><b> <?= $user->getFirstName() ?> </b></p>
+            </div>
+            <div class="card-header">
+                <label for="lastName"><b>Last Name: </b></label>
+                <p class="card-title"><b> <?= $user->getLastName() ?> </b></p>
+            </div>
+            <div class="card-header">
+                <label for="email"><b>Email: </b></label>
+                <p class="card-title"> <?= $user->getEmail() ?> </p>
+            </div>
+            <div class="card-header">
+                <label for="telephone"><b>Telephone Number: </b></label>
+                <p class="card-title"> <?= $user->getTelephone() ?> </p>
+            </div>
+            <div class="card-header">
+                <label for="address"><b>Address: </b></label>
+                <p class="card-title"> <?= $user->getAddress() ?> </p>
+            </div>
+            <div class="card-header">
+                <label for="address"><b>Post: </b></label>
+                <p class="card-title"> <?= $user->getPost() ?> </p>
+            </div>
+            <?php if ($user->getId() !== AuthService::get()->getUser()->getId()) : ?>
+                <div class="card-footer">
+<!--                    <a class="btn btn-danger" href="/user/admin/delete/--><?php //= $user->getId() ?><!--">Delete User</a>-->
+                    <button class="btn btn-danger show-confirm-btn" data-id="<?= $user->getId() ?>" data-name="<?= $user->getUsername() ?>">Delete User</button>
+                    <a class="btn btn-primary" href="/user/admin/edit/<?= $user->getId() ?>">Edit User</a>
+
+                </div>
+                <div class="card-footer">
+                </div>
+
+            <?php endif; ?>
+        </div>
+<?php endforeach;?>
+<div class="modal-window-container">
+    <div class="delete-confirm">
+        <h3>Are you sure you want to <span style="color: red;">delete</span> <span class="delete-user-text" style="color: red"></span> ?</h3>
+        <div>
+            <a type="submit" href="" class="btn btn-danger delete-confirm-btn">Confirm delete</a>
+            <button class="btn btn-warning cancel-delete">Cancel delete</button>
+        </div>
+    </div>
+</div>
+<?php require_once VIEW.'shared/footer.shared.phtml'?>
+</body>
+</html>
+

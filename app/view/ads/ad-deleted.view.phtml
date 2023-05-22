@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <?php require_once VIEW.'shared/meta.shared.phtml'?>
+    <link rel="stylesheet" href="../../../public/css/style.css">
+    <script defer src="../../../public/js/category-select.js"></script>
+    <script defer src="../../../../public/js/active-route.js"></script>
+    <title> Vaje 2 SP</title>
+</head>
+<body>
+<?php require_once VIEW.'shared/header.shared.phtml'?>
+<?php foreach ($this->ads as $ad) : ?> <!--ni echo-->
+    <div class="card shadow-sm m-2 ad_card"  >
+        <div class="card-body">
+            <h4 class="card-title"><b> <?= $ad->getTitle() ?> </b></h4>
+            <h5 class="card-description"><?= $ad->getDescription() ?></h5>
+            <!--            <img class="displayImage" src="data:image;base64,--><?php //= base64_encode($ad->getImages()[0]->getBytes()) ?><!--" />-->
+        </div>
+        <div class="card-footer">
+            <a class="btn btn-danger" href="/ads/delete-ad/delete/<?= $ad->getId() ?>">Delete</a>
+            <a class="btn btn-success" href="/ads/delete-ad/restore/<?= $ad->getId() ?>">Restore</a>
+        </div>
+    </div>
+<?php endforeach;?>
+<?php require_once VIEW.'shared/footer.shared.phtml'?>
+</body>
+</html>

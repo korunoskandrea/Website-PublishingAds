@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <?php require_once VIEW.'shared/meta.shared.phtml'?>
+    <link rel="stylesheet" href="../../../../public/css/style.css">
+    <script defer src="../../../../public/js/category-select.js"></script>
+    <script defer src="../../../../../public/js/active-route.js"></script>
+    <title> Vaje 2 SP</title>
+</head>
+<body>
+<?php require_once VIEW.'shared/header.shared.phtml'?>
+<?php if (isset($this->viewData['error'])) : ?>
+    <div class="alert alert-danger"><?= $this->error ?></div>
+<?php endif; ?>
+<main class="signup-form">
+    <form method="post">
+        <div class="form-group">
+            <label for="username"><b>Username</b></label>
+            <input required type="text" class="form-control" id="username" name="username" placeholder="Enter username..." />
+        </div>
+        <div class="form-group">
+            <label for="email"><b>Email</b></label>
+            <input required type="email" class="form-control" id="email" name="email" placeholder="Enter email..." />
+        </div>
+        <div class="form-group">
+            <label for="firstName"><b>First Name</b></label>
+            <input required type="text" class="form-control" id="firstName" name="firstName" placeholder="Enter first name..." />
+        </div>
+        <div class="form-group">
+            <label for="lastName"><b>Last Name</b></label>
+            <input required type="text" class="form-control" id="lastName" name="lastName" placeholder="Enter last name..." />
+        </div>
+        <div class="form-group">
+            <label for="telephone"><b>Telephone number</b></label>
+            <input required type="tel" class="form-control" id="telephone" name="telephone" placeholder="Enter telephone number..." />
+        </div>
+        <div class="form-group">
+            <label for="address"><b>Address</b></label>
+            <input required type="text" class="form-control" id="address" name="address" placeholder="Enter your address..." />
+        </div>
+        <div class="form-group">
+            <label for="post"><b>Post</b></label>
+            <input required type="text" class="form-control" id="post" name="post" placeholder="Enter your post..." />
+        </div>
+        <div class="form-group">
+            <label for="password"><b>Password</b></label>
+            <input required type="password" class="form-control" id="password" name="password" placeholder="Password ..." />
+        </div>
+        <input type="submit" name="submit" class="btn btn-primary" id="reg-submit" value="Create New User" />
+    </form>
+</main>
+
+<?php require_once VIEW.'shared/footer.shared.phtml'?>
+</body>
+</html>

@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <?php require_once VIEW.'shared/meta.shared.phtml'?>
+    <link rel="stylesheet" href="../../../public/css/style.css">
+    <script defer src="../../../../public/js/active-route.js"></script>
+    <script defer src="../../../../public/js/api-fetch.js"></script>
+    <title> Vaje 2 SP</title>
+</head>
+<body>
+<?php require_once VIEW.'shared/header.shared.phtml'?>
+<div class="alert alert-danger" style="display: none;"></div>
+<div class="ad_info">
+    <div class="ad_info_left">
+        <h2 class="text-center"><small class="display-6"><b><?= $this->ad->getTitle() ?></b></small></h2>
+        <p class="ad-desc"><small><?= $this->ad->getDescription() ?></small></p>
+        <p class="category"><small>Categories: </small></p>
+        <?php foreach ($this->ad->getCategories() as $category) : ?>
+            <span><small><?= $category->getCategory() ?></small></span>
+        <?php endforeach; ?>
+        <p class="text-center"><small class="display-7 text-muted">Published by: </small><?= $this->ad->getUser()->getUsername() ?></p>
+        <p class="text-center"><small class="display-7 text-muted">Published at: </small><?= $this->ad->getCreatedAt()?></p>
+    </div>
+    <div class="images-right">
+        <?php foreach ($this->ad->getImages() as $image) : ?>
+            <img class="displayImage" src="data:image;base64,<?= base64_encode($image->getBytes()) ?>" />
+        <?php endforeach; ?>
+    </div>
+</div>
+<div class="comment-form-container">
+    <div class="comments-form">
+        <label for="comment"><b>Ad Comment</b></label>
+        <textarea required class="form-control" id="comment-field" rows="5" placeholder="Write a comment for this ad..." ></textarea>
+        <button class="btn btn-primary" id="comment-submit">Comment</button>
+    </div>
+    <hr/>
+    <div class="comments" data-id="<?= $this->ad->getId() ?>" data-user="<?= $this->ad->getUser()->getId() ?>"></div>
+</div>
+
+<?php require_once VIEW.'shared/footer.shared.phtml'?>
+</body>
+</html>

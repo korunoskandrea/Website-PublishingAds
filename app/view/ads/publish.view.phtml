@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <?php require_once VIEW.'shared/meta.shared.phtml'?>
+    <link rel="stylesheet" href="../../../public/css/style.css">
+    <script async src="../../../public/js/category-select.js" ></script>
+    <script defer src="../../../../public/js/active-route.js"></script>
+    <title> Vaje 2 SP</title>
+</head>
+<body>
+<?php require_once VIEW.'shared/header.shared.phtml'?>
+<main class="publish-form">
+    <form method="post" enctype="multipart/form-data">
+        <div class="form-group">
+            <label for="ad-name"><b>Ad Name</b></label>
+            <input required type="text" class="form-control" id="ad-name" name="ad-name" placeholder="Enter name of your ad..." />
+        </div>
+        <div class="form-group">
+            <label><b>Ad Description</b></label>
+            <textarea required type="text" class="form-control" id="ad-description" name="ad-description" rows="10" cols="50" placeholder="Tell us something about your ad..."></textarea>
+        </div>
+        <label><b>Ad Photo</b></label><br>
+        <div class="form-group selected-items bg-light">
+            <button type="button" class="btn btn-light add-img-btn">+</button>
+            <input type="file" id="img-select" hidden accept="image/*" multiple>
+            <div class="uploaded-images-list">
+
+            </div>
+        </div>
+        <br>
+        <label for="ad-category"><b>Ad Category</b></label><br>
+        <div class="form-group selected-items bg-light">
+            <button type="button" class="btn btn-light select-add-btn">+</button>
+            <div class="selected-items-list">
+            </div>
+        </div>
+        <input type="submit" name="publish" class="btn btn-primary" id="reg-submit" value="Publish" />
+    </form>
+</main>
+
+<div class="popup-dialog">
+    <div class="dialog-content card">
+        <h2 class="card-header">Categories</h2>
+        <div class="card-body">
+            <?php foreach (DatabaseService::get()->getCategories() as $category): ?>
+                <button data-id="<?= $category->getId() ?>" id="cat-<?= $category->getId() ?>" class="select-btn btn btn-outline-dark">
+                    <?= $category->getCategory() ?>
+                </button>
+            <?php endforeach;?>
+        </div>
+        <div class="card-footer">
+            <button class="btn btn-success popup-add-btn" >Add Selected Categories</button>
+        </div>
+    </div>
+</div>
+<?php require_once VIEW.'shared/footer.shared.phtml'?>
+
+</body>
+</html>
